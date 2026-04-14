@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechWorld - Catálogo</title>
+    <link rel="stylesheet" href="../css/catalogo.css">
+</head>
+<body>
+ 
+<header>
+    <div class="hdr">
+        <h1 class="logo">
+        <img class="logo-img" src="../imagenes/17851715.png" alt="">TechWorld</h1>
+        </h1>
+        <nav>
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="../html/inicio.html">Inicio</a></li>
+                <li class="navbar-item"><a href="../html/catalogo.html">Catalogo</a></li>
+                <li class="navbar-item"><a href="../html/soporte.html">Soporte</a></li>
+            </ul>
+        </nav>
+        <a class="cart-l" href="#" onclick="toggleCart(); return false;">
+            <img class="cart-logo" src="../imagenes/carrito-de-compras (1).png" alt="Carrito">
+            <span class="cart-badge" id="cart-count">0</span>
+        </a>
+    </div>
+</header>
+ 
+<div class="cart-panel" id="cart-panel">
+    <h3>Carrito de compras</h3>
+    <div id="cart-items"><p class="empty-cart">Sin productos aún</p></div>
+    <div class="cart-total" id="cart-total" style="display:none">
+        <span>Total</span><span id="total-amount">$0</span>
+    </div>
+</div>
+ 
+<h1 class="page-title">PRODUCTOS</h1>
+ 
+<div class="catalog">
+ 
+    <div class="cat-section">
+        <div class="cat-label">Mac</div>
+        <ul class="cat-products">
+            <li>
+                <img src="../imagenes/Macbook air.png" alt="Macbook Air">
+                <h3>Macbook Air</h3>
+                <span class="price">$900</span>
+                <button onclick="agregarProducto('Macbook Air', 900, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/Macbook Pro.png" alt="Macbook Pro">
+                <h3>Macbook Pro</h3>
+                <span class="price">$1200</span>
+                <button onclick="agregarProducto('Macbook Pro', 1200, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/Imac.png" alt="iMac">
+                <h3>iMac</h3>
+                <span class="price">$1100</span>
+                <button onclick="agregarProducto('Imac', 1100, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/Mac mini.png" alt="Mac Mini">
+                <h3>Mac Mini</h3>
+                <span class="price">$800</span>
+                <button onclick="agregarProducto('Mac Mini', 800, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+        </ul>
+    </div>
+ 
+    <div class="cat-section">
+        <div class="cat-label">iPad</div>
+        <ul class="cat-products">
+            <li>
+                <img src="../imagenes/Ipad pro.png" alt="iPad Pro">
+                <h3>iPad Pro</h3>
+                <span class="price">$500</span>
+                <button onclick="agregarProducto('Ipad Pro', 500, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/Ipad Air.png" alt="iPad Air">
+                <h3>iPad Air</h3>
+                <span class="price">$400</span>
+                <button onclick="agregarProducto('Ipad Air', 400, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/Ipad.png" alt="iPad">
+                <h3>iPad</h3>
+                <span class="price">$350</span>
+                <button onclick="agregarProducto('Ipad', 350, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/Ipad Mini.png" alt="iPad Mini">
+                <h3>iPad Mini</h3>
+                <span class="price">$300</span>
+                <button onclick="agregarProducto('Ipad Mini', 300, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+        </ul>
+    </div>
+ 
+    <div class="cat-section">
+        <div class="cat-label">iPhone</div>
+        <ul class="cat-products">
+            <li>
+                <img src="../imagenes/17 pro.png" alt="iPhone 17 Pro">
+                <h3>iPhone 17 Pro</h3>
+                <span class="price">$1300</span>
+                <button onclick="agregarProducto('Iphone 17 Pro', 1300, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/Iphone Air.png" alt="iPhone Air">
+                <h3>iPhone Air</h3>
+                <span class="price">$1000</span>
+                <button onclick="agregarProducto('Iphone Air', 1000, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/iphone 16.png" alt="iPhone 16">
+                <h3>iPhone 16</h3>
+                <span class="price">$900</span>
+                <button onclick="agregarProducto('Iphone 16', 900, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/iphone 16e.png" alt="iPhone 16e">
+                <h3>iPhone 16e</h3>
+                <span class="price">$800</span>
+                <button onclick="agregarProducto('Iphone 16e', 800, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+        </ul>
+    </div>
+ 
+    <div class="cat-section">
+        <div class="cat-label">Accesorios</div>
+        <ul class="cat-products">
+            <li>
+                <img src="../imagenes/Airpods pro.png" alt="AirPods Pro">
+                <h3>AirPods Pro</h3>
+                <span class="price">$250</span>
+                <button onclick="agregarProducto('Airpods Pro', 250, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/watch.png" alt="Apple Watch">
+                <h3>Apple Watch</h3>
+                <span class="price">$400</span>
+                <button onclick="agregarProducto('Watch', 400, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/Apple tv.png" alt="Apple TV">
+                <h3>Apple TV</h3>
+                <span class="price">$200</span>
+                <button onclick="agregarProducto('Apple TV', 200, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+            <li>
+                <img src="../imagenes/Pencil.png" alt="Apple Pencil">
+                <h3>Apple Pencil</h3>
+                <span class="price">$120</span>
+                <button onclick="agregarProducto('Pencil', 120, 1)" type="button" class="btn-comprar">+</button>
+            </li>
+        </ul>
+    </div>
+ 
+</div>
+ 
+<footer>
+<div class="ftr">
+<div class="ftr-brand">
+<span class="logo">
+<img class="logo-img" src="../imagenes/sun.png"> TechWorld
+</span>
+<p class="ftr-tagline">Tecnología que te define.</p>
+</div>
+ 
+        <div class="ftr-links">
+<p class="ftr-heading">Tienda</p>
+<a href="#">iPhone</a>
+<a href="#">Mac</a>
+<a href="#">iPad</a>
+<a href="#">Accesorios</a>
+</div>
+ 
+        <div class="ftr-links">
+<p class="ftr-heading">Soporte</p>
+<a href="#">Centro de ayuda</a>
+<a href="#">Garantía</a>
+<a href="#">Contacto</a>
+</div>
+ 
+        <div class="ftr-links">
+<p class="ftr-heading">Empresa</p>
+<a href="#">Nosotros</a>
+<a href="#">Privacidad</a>
+<a href="#">Términos</a>
+</div>
+</div>
+ 
+    <div class="ftr-bottom">
+<p>© 2025 TechWorld. Todos los derechos reservados.</p>
+<div class="ftr-social">
+<a href="#">Instagram</a>
+<a href="#">Twitter</a>
+<a href="#">Facebook</a>
+</div>
+</div>
+</footer>
+ 
+<script src="../js/catalogo.js"></script>
+</body>
+</html>

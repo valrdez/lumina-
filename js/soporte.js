@@ -1,5 +1,5 @@
 // js/app.js
-import { hashPassword, encryptData, decryptData } from './cryptoUtils';
+import { hashPassword, encryptData } from './cryptoUtils';
 
 // Variable global para almacenar el último paquete encriptado
 let lastEncryptedPackage = null;
@@ -7,131 +7,12 @@ let lastEncryptedPackage = null;
 // Esperar a que el DOM esté cargado
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ---- EJEMPLO 1: HASH DE CONTRASEÑA ----
-    const hashBtn = document.getElementById('hashBtn');
-    if (hashBtn) {
-        hashBtn.addEventListener('click', async () => {
-            const password = document.getElementById('plainPassword').value;
-            const hashResult = document.getElementById('hashResult');
-            
-            if (!password) {
-                hashResult.innerHTML = '<span class="error">❌ Escribe una contraseña</span>';
-                return;
-            }
-            
-            try {
-                const hashed = await hashPassword(password);
-                hashResult.innerHTML = `
-                    <strong>Hash generado:</strong><br>
-                    ${hashed}<br>
-                    <span class="success">✅ Listo para guardar o enviar en lugar del texto plano.</span>
-                    <br><small>🔍 Longitud: ${hashed.length} caracteres</small>
-                `;
-                console.log('Hash generado:', hashed);
-            } catch (error) {
-                hashResult.innerHTML = `<span class="error">Error: ${error.message}</span>`;
-                console.error('Error en hash:', error);
-            }
-        });
-    }
-    
-    // ---- EJEMPLO 2: ENCRIPTACIÓN SIMÉTRICA ----
-    const encryptBtn = document.getElementById('encryptBtn');
-    const decryptBtn = document.getElementById('decryptBtn');
-    
-    if (encryptBtn) {
-        encryptBtn.addEventListener('click', async () => {
-            const secret = document.getElementById('secretData').value;
-            const masterPwd = document.getElementById('masterKey').value;
-            const encryptedResult = document.getElementById('encryptedResult');
-            const decryptedResult = document.getElementById('decryptedResult');
-            
-            if (!secret || !masterPwd) {
-                alert('⚠️ Completa el dato secreto y la contraseña maestra');
-                return;
-            }
-            
-            if (masterPwd.length < 4) {
-                alert('⚠️ La contraseña maestra debería tener al menos 4 caracteres');
-                return;
-            }
-            
-            try {
-                const encrypted = await encryptData(secret, masterPwd);
-                lastEncryptedPackage = encrypted;
-                encryptedResult.innerHTML = `
-                    <strong>📦 Dato Encriptado:</strong><br>
-                    <div style="font-size: 12px; word-break: break-all;">${encrypted}</div>
-                    <br>
-                    <span class="success">✅ Este texto es seguro. Sin la contraseña maestra es inútil.</span>
-                    <br><small>💾 Puedes guardar este texto en localStorage o enviarlo al servidor</small>
-                `;
-                decryptedResult.innerHTML = '';
-                
-                // Guardar en localStorage
-                localStorage.setItem('encryptedNote', encrypted);
-                console.log('✅ Dato encriptado y guardado en localStorage:', encrypted);
-                
-            } catch (error) {
-                encryptedResult.innerHTML = `<span class="error">Error: ${error.message}</span>`;
-                console.error('Error en encriptación:', error);
-            }
-        });
-    }
-    
-    if (decryptBtn) {
-        decryptBtn.addEventListener('click', async () => {
-            const masterPwd = document.getElementById('masterKey').value;
-            const decryptedResult = document.getElementById('decryptedResult');
-            
-            if (!lastEncryptedPackage) {
-                // Intentar recuperar del localStorage si existe
-                const saved = localStorage.getItem('encryptedNote');
-                if (saved) {
-                    lastEncryptedPackage = saved;
-                    document.getElementById('encryptedResult').innerHTML = `
-                        <strong>📦 Recuperado del localStorage:</strong><br>
-                        <div style="font-size: 12px; word-break: break-all;">${saved}</div>
-                        <br>
-                        <small>✅ Dato recuperado, ingresa la contraseña para desencriptar</small>
-                    `;
-                    console.log('📦 Dato recuperado de localStorage');
-                } else {
-                    alert('🔐 Primero encripta algún dato o no hay datos guardados');
-                    return;
-                }
-            }
-            
-            if (!masterPwd) {
-                alert('🔑 Ingresa la contraseña maestra para desencriptar');
-                return;
-            }
-            
-            try {
-                const decrypted = await decryptData(lastEncryptedPackage, masterPwd);
-                decryptedResult.innerHTML = `
-                    <strong>🔓 Dato Original:</strong><br>
-                    <div style="background: white; padding: 10px; border-radius: 5px;">${decrypted}</div>
-                    <br>
-                    <span class="success">✅ Recuperado exitosamente.</span>
-                `;
-                console.log('✅ Dato desencriptado correctamente:', decrypted);
-            } catch (error) {
-                decryptedResult.innerHTML = `
-                    <strong>❌ Error:</strong><br>
-                    <span class="error">${error.message}</span>
-                    <br><small>Verifica que la contraseña maestra sea correcta</small>
-                `;
-                console.error('Error en desencriptación:', error);
-            }
-        });
-    }
     
     // ---- EJEMPLO 3: FORMULARIO CON ENCRIPTACIÓN ----
-    const demoForm = document.getElementById('demoForm');
+    const Form = document.getElementById('demoForm');
     
-    if (demoForm) {
-        demoForm.addEventListener('submit', async (event) => {
+    if (Form) {
+        Form.addEventListener('submit', async (event) => {
             // Prevenir el envío normal del formulario
             event.preventDefault();
             
@@ -140,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Obtener los valores del formulario
             const username = document.getElementById('username').value;
             const password = document.getElementById('formPassword').value;
+            const problem = document.getElementById('problem').value;
             const formResult = document.getElementById('formResult');
             
             // Validar que los campos no estén vacíos
@@ -164,11 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('🔒 Encriptando nombre de usuario...');
                 const masterKey = "claveMaestraDelSistema"; // En un caso real, esto sería única por usuario
                 const encryptedUsername = await encryptData(username, masterKey);
+                const encryptedUserproblem = await encryptData(problem,masterKey);
                 
                 // PASO 3: Simular envío al servidor (aquí normalmente harías un fetch)
                 const datosProtegidos = {
                     username_encriptado: encryptedUsername,
                     password_hash: hashedPassword,
+                    problem_encriptado: encryptedUserproblem,
                     timestamp: new Date().toISOString(),
                     metodo: "POST",
                     endpoint: "/api/registro"
@@ -190,6 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <strong>🔒 Nombre de usuario encriptado:</strong><br>
                     <div style="font-size: 11px; background: white; padding: 8px; border-radius: 4px; margin-top: 5px; word-break: break-all;">
                         ${encryptedUsername}
+                    </div>
+
+                    <strong>🔒 Prblema de usuario encriptado:</strong><br>
+                    <div style="font-size: 11px; background: white; padding: 8px; border-radius: 4px; margin-top: 5px; word-break: break-all;">
+                        ${encryptedUserproblem}
                     </div>
                     
                     <br>
@@ -242,4 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
         lastEncryptedPackage = savedNote;
         console.log('💾 Dato recuperado de localStorage al cargar');
     }
+    mensaje= "Se envio cuestionario"
+    
 });

@@ -5,17 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>soporte</title>
-    <link rel="stylesheet" href="./proyecto-encriptacion/css/styles.css">
+    <link rel="stylesheet" href="../css/soporte.css">
 </head>
-<header></header>
+<header>
+    <div class="hdr">
+        <h1 class="logo">
+            <img class="logo-img" src="../imagenes/17851715.png" alt="">TechWorld
+        </h1>
+        <nav>
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="../html/inicio.html">Inicio</a></li>
+                <li class="navbar-item"><a href="../html/catalogo.html">catalogo</a></li>
+                <li class="navbar-item"><a href="../html/soporte.html">Soporte</a></li>
+            </ul>
+        </nav>
+        <a class="cart-l" href="#"> <img class="cart-logo" src="../imagenes/carrito-de-compras (1).png" alt=""></a>
+
+    </div>
+</header>
+
 
 <body>
-    <div class="container">
+    <div class="container"><br><br><br><br><br>
         <h1>Soporte Tecnico</h1>
         <p>En que podemos ayudar?</p><br>
         <div class="card">
 
-            <form id="demoForm">
+            <form id="Form">
                 <div class="form-group">
                     <label>Nombre y apellidos:</label>
                     <input type="text" id="username" placeholder="usuario" class="input-field">
@@ -23,25 +39,71 @@
 
                 <div class="form-group">
                     <label>Correo electronico:</label>
-                    <input type="password" id="formPassword" placeholder="Tu contraseña" class="input-field">
+                    <input type="text" id="formPassword" placeholder="Tu correo" class="input-field">
                 </div>
-                <!-- <label>Comentario:</label>
-                <div class="form-group">
-                    <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea><br><br>
-                </div> -->
 
-                <button type="submit" class="btn btn-primary"> Enviar </button>
+                <div class="form-group"><label>Los datos protegidos aparecerán aquí... :</label>
+                    <input type="text" id="problem" placeholder="Problema" class="input-field">
+                </div>
+
+                <button type="submit" class="btn btn-primary"> Enviar </button><br>
+                 
+
+                
             </form>
 
-            <div id="formResult" class="result-box">
-                <em>Los datos protegidos aparecerán aquí...</em>
+            <div id="formResult">
+
+
             </div>
+
 
 
         </div>
     </div>
-<script src="./proyecto-encriptacion/js/soporte.js"> </script>
+    
+        <script type="module" src="../js/prueba.js"></script>
 </body>
+<footer>
+    <div class="ftr">
+        <div class="ftr-brand">
+            <span class="logo">
+                <img class="logo-img" src="../imagenes/17851715.png"> TechWorld
+            </span>
+            <p class="ftr-tagline">Tecnología que te define.</p>
+        </div>
 
+        <div class="ftr-links">
+            <p class="ftr-heading">Tienda</p>
+            <a href="#">iPhone</a>
+            <a href="#">Mac</a>
+            <a href="#">iPad</a>
+            <a href="#">Accesorios</a>
+        </div>
+
+        <div class="ftr-links">
+            <p class="ftr-heading">Soporte</p>
+            <a href="#">Centro de ayuda</a>
+            <a href="#">Garantía</a>
+            <a href="#">Contacto</a>
+        </div>
+
+        <div class="ftr-links">
+            <p class="ftr-heading">Empresa</p>
+            <a href="#">Nosotros</a>
+            <a href="#">Privacidad</a>
+            <a href="#">Términos</a>
+        </div>
+    </div>
+
+    <div class="ftr-bottom">
+        <p>© 2025 TechWorld. Todos los derechos reservados.</p>
+        <div class="ftr-social">
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+            <a href="#">Facebook</a>
+        </div>
+    </div>
+</footer>
 
 </html>
